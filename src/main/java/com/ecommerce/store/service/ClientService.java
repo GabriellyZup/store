@@ -6,8 +6,6 @@ import com.ecommerce.store.model.Client;
 import com.ecommerce.store.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class ClientService {
 
@@ -19,10 +17,10 @@ public class ClientService {
 
     public ClientResponseDTO createClient(ClientRequestDTO clientRequestDTO) {
         if (clientRepository.existsByCpf(clientRequestDTO.getCpf())) {
-            throw new IllegalArgumentException("Já existe um cliente com este CPF.");
+            throw new IllegalArgumentException("CPF ja cadastrado.");
         }
         if (clientRepository.existsByEmail(clientRequestDTO.getEmail())) {
-            throw new IllegalArgumentException("Já existe um cliente com este email.");
+            throw new IllegalArgumentException("E-mail já cadastrado.");
         }
 
         Client client = new Client();

@@ -27,7 +27,6 @@ public class Client {
     @Email(message = "Formato de email inválido.")
     private String email;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
