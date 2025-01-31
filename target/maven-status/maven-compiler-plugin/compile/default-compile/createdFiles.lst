@@ -5,6 +5,7 @@ com\ecommerce\store\service\OrderService.class
 com\ecommerce\store\enums\OrderStatus.class
 com\ecommerce\store\model\Client.class
 com\ecommerce\store\service\ProductService.class
+com\ecommerce\store\dto\OrderRequestDTO$ProductDTO.class
 com\ecommerce\store\dto\ClientRequestDTO.class
 com\ecommerce\store\exception\GlobalExceptionHandler.class
 com\ecommerce\store\repository\ProductRepository.class

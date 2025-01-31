@@ -3,22 +3,34 @@ package com.ecommerce.store.dto;
 import java.util.List;
 
 public class OrderRequestDTO {
-    private String clientCpf;
-    private List<String> productNames;
+    private String cpf;
+    private List<ProductDTO> produtos;
 
-    public String getClientCpf() {
-        return clientCpf;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setClientCpf(String clientCpf) {
-        this.clientCpf = clientCpf;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public List<String> getProductNames() {
-        return productNames;
+    public List<ProductDTO> getProdutos() {
+        return produtos;
     }
 
-    public void setProductNames(List<String> productNames) {
-        this.productNames = productNames;
+    public void setProdutos(List<ProductDTO> produtos) {
+        this.produtos = produtos;
+    }
+
+    public static class ProductDTO {
+        private String nome;
+
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
     }
 }
