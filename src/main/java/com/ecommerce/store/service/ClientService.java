@@ -6,6 +6,10 @@ import com.ecommerce.store.model.Client;
 import com.ecommerce.store.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ClientService {
 
@@ -38,6 +42,14 @@ public class ClientService {
         return new ClientResponseDTO(client);
     }
 
+    public List<ClientResponseDTO> getAllClients() {
+        return clientRepository.findAll()
+                .stream()
+                .map(ClientResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
     public ClientResponseDTO updateClient(String cpf, ClientRequestDTO clientRequestDTO) {
         Client client = clientRepository.findByCpf(cpf)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado."));
@@ -53,5 +65,15 @@ public class ClientService {
         Client client = clientRepository.findByCpf(cpf)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado."));
         clientRepository.delete(client);
+    }
+
+    public List<ClientResponseDTO> getClientsByName(String name) {
+        List<Client> clients = clientRepository.findByNameContainingIgnoreCase(name);
+        if (clients.isEmpty()) {
+            throw new IllegalArgumentException("Nenhum cliente encontrado com este nome.");
+        }
+        return clients.stream()
+                .map(ClientResponseDTO::new)
+                .collect(Collectors.toList());
     }
 }

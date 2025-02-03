@@ -39,10 +39,26 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public void deleteProduct(Long id) {
-        if (!productRepository.existsById(id)) {
-            throw new IllegalArgumentException("Produto não encontrado.");
-        }
-        productRepository.deleteById(id);
+    public ProductResponseDTO getProductByName(String name) {
+        Product product = productRepository.findByName(name)
+                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
+        return new ProductResponseDTO(product);
+    }
+
+    public ProductResponseDTO updateProduct(String name, ProductRequestDTO productRequestDTO) {
+        Product product = productRepository.findByName(name)
+                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
+
+        product.setPrice(productRequestDTO.getPrice());
+        product.setQuantity(productRequestDTO.getQuantity());
+
+        Product updatedProduct = productRepository.save(product);
+        return new ProductResponseDTO(updatedProduct);
+    }
+
+    public void deleteProductByName(String name) {
+        Product product = productRepository.findByName(name)
+                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
+        productRepository.delete(product);
     }
 }

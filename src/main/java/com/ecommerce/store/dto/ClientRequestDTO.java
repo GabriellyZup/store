@@ -1,6 +1,6 @@
 package com.ecommerce.store.dto;
 
-//import com.ecommerce.store.util.CpfValidator;
+import org.hibernate.validator.constraints.br.CPF;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -11,7 +11,8 @@ public class ClientRequestDTO {
     private String name;
 
     @NotBlank(message = "O CPF não pode estar vazio.")
-    @Pattern(regexp = "\\d{11}", message = "O CPF deve conter exatamente 11 dígitos.")
+    @CPF (message = "CPF inválido.")
+    //@Pattern(regexp = "\\d{11}", message = "O CPF deve conter exatamente 11 dígitos.")
     private String cpf;
 
     @NotBlank(message = "O email não pode estar vazio.")
@@ -31,9 +32,6 @@ public class ClientRequestDTO {
     }
 
     public void setCpf(String cpf) {
-//        if (!CpfValidator.isValidCPF(cpf)) {
-//            throw new IllegalArgumentException("CPF inválido.");
-//        }
         this.cpf = cpf;
     }
 

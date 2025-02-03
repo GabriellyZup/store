@@ -23,14 +23,6 @@ public class Product {
     @Min(value = 0, message = "A quantidade deve ser maior ou igual a 0.")
     private int quantity;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }

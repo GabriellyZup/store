@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/cliente")
 public class ClientController {
@@ -29,6 +31,12 @@ public class ClientController {
     public ResponseEntity<ClientResponseDTO> getClientByCpf(@PathVariable String cpf) {
         ClientResponseDTO client = clientService.getClientByCpf(cpf);
         return ResponseEntity.ok(client);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ClientResponseDTO>> getAllClients() {
+        List<ClientResponseDTO> clients = clientService.getAllClients();
+        return ResponseEntity.ok(clients);
     }
 
     @PutMapping("/{cpf}")
