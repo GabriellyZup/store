@@ -1,5 +1,7 @@
 package com.ecommerce.store.dto;
 
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
@@ -8,7 +10,8 @@ public class ProductRequestDTO {
     @NotBlank(message = "O nome do produto não pode estar vazio.")
     private String name;
 
-    @Min(value = 0, message = "O preço deve ser maior que 0.")
+    @DecimalMin(value = "0.01", message = "O preço deve ser maior que 0.")
+    @Digits(integer = 10, fraction = 2, message = "O preço deve ter no máximo 2 casas decimais.")
     private double price;
 
     @Min(value = 0, message = "A quantidade deve ser maior ou igual a 0.")
